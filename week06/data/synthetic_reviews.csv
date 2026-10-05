@@ -1,0 +1,121 @@
+﻿review_id,group_id,domain,text,label,source_type
+SYN001,PAIR001,영화,배우의 연기가 자연스러워서 이야기에 몰입했다.,1,synthetic_educational
+SYN002,PAIR001,영화,배우의 연기가 어색해서 이야기에 몰입하기 어려웠다.,0,synthetic_educational
+SYN003,PAIR002,영화,이 영화는 결말까지 흥미롭고 다시 보고 싶다.,1,synthetic_educational
+SYN004,PAIR002,영화,이 영화는 결말이 뻔하고 다시 보고 싶지 않다.,0,synthetic_educational
+SYN005,PAIR003,영화,영상미와 음악이 어우러져 오래 기억에 남았다.,1,synthetic_educational
+SYN006,PAIR003,영화,영상은 화려하지만 내용이 빈약해서 실망했다.,0,synthetic_educational
+SYN007,PAIR004,영화,잔잔한 이야기지만 따뜻한 감동이 있었다.,1,synthetic_educational
+SYN008,PAIR004,영화,지루한 장면이 반복되어 집중하기 어려웠다.,0,synthetic_educational
+SYN009,PAIR005,영화,웃음과 감동을 함께 주는 즐거운 영화였다.,1,synthetic_educational
+SYN010,PAIR005,영화,웃기려는 대사가 어색해서 재미가 없었다.,0,synthetic_educational
+SYN011,PAIR006,영화,주인공의 변화가 설득력 있어서 만족스러웠다.,1,synthetic_educational
+SYN012,PAIR006,영화,주인공의 행동이 이해되지 않아 답답했다.,0,synthetic_educational
+SYN013,PAIR007,영화,느린 전개가 오히려 여운을 깊게 만들어 좋았다.,1,synthetic_educational
+SYN014,PAIR007,영화,느린 전개에 긴장감도 없어 아쉬웠다.,0,synthetic_educational
+SYN015,PAIR008,영화,기대보다 재미있어서 친구에게 추천하고 싶다.,1,synthetic_educational
+SYN016,PAIR008,영화,기대보다 재미없어서 추천하기 어렵다.,0,synthetic_educational
+SYN017,PAIR009,영화,슬픈 결말인데도 작품 전체는 정말 훌륭했다.,1,synthetic_educational
+SYN018,PAIR009,영화,좋은 배우를 모아 놓고 이야기는 엉성했다.,0,synthetic_educational
+SYN019,PAIR010,영화,상영 시간이 길어도 지루하지 않고 재미있었다.,1,synthetic_educational
+SYN020,PAIR010,영화,상영 시간이 너무 길게 느껴져 지루했다.,0,synthetic_educational
+SYN021,PAIR011,영화,배우들이 만든 긴장감 덕분에 집중해서 봤다.,1,synthetic_educational
+SYN022,PAIR011,영화,소리만 크고 장면의 연결이 어색했다.,0,synthetic_educational
+SYN023,PAIR012,영화,익숙한 소재를 신선하게 풀어낸 점이 좋았다.,1,synthetic_educational
+SYN024,PAIR012,영화,익숙한 소재를 그대로 반복해 신선하지 않았다.,0,synthetic_educational
+SYN025,PAIR013,드라마,인물들의 대화가 자연스럽고 이야기가 재미있다.,1,synthetic_educational
+SYN026,PAIR013,드라마,인물들의 대화가 부자연스럽고 이야기가 지루하다.,0,synthetic_educational
+SYN027,PAIR014,드라마,매회 다음 이야기가 궁금해서 기다려진다.,1,synthetic_educational
+SYN028,PAIR014,드라마,매회 같은 갈등을 반복해서 답답하고 아쉽다.,0,synthetic_educational
+SYN029,PAIR015,드라마,마지막 회의 따뜻한 마무리가 마음에 들었다.,1,synthetic_educational
+SYN030,PAIR015,드라마,마지막 회의 급한 마무리에 실망했다.,0,synthetic_educational
+SYN031,PAIR016,드라마,조연까지 매력적이라 보는 즐거움이 크다.,1,synthetic_educational
+SYN032,PAIR016,드라마,조연의 이야기가 갑자기 사라져 아쉬웠다.,0,synthetic_educational
+SYN033,PAIR017,드라마,갈등을 해결하는 과정이 설득력 있고 좋았다.,1,synthetic_educational
+SYN034,PAIR017,드라마,갈등을 해결하는 과정이 억지스러워 별로였다.,0,synthetic_educational
+SYN035,PAIR018,드라마,배경 음악이 장면의 감정을 잘 살려 감동했다.,1,synthetic_educational
+SYN036,PAIR018,드라마,배경 음악이 너무 커서 대사에 집중하기 어려웠다.,0,synthetic_educational
+SYN037,PAIR019,드라마,초반은 느렸지만 후반의 전개는 훌륭했다.,1,synthetic_educational
+SYN038,PAIR019,드라마,초반은 좋았지만 후반의 전개는 실망스러웠다.,0,synthetic_educational
+SYN039,PAIR020,드라마,주인공의 연기가 섬세해서 몰입하기 좋았다.,1,synthetic_educational
+SYN040,PAIR020,드라마,주인공의 연기가 어색해서 몰입이 깨졌다.,0,synthetic_educational
+SYN041,PAIR021,드라마,짧은 회차 안에 이야기를 잘 담아 만족했다.,1,synthetic_educational
+SYN042,PAIR021,드라마,회차만 늘리고 이야기가 나아가지 않아 지루했다.,0,synthetic_educational
+SYN043,PAIR022,드라마,과장하지 않는 연출이 오히려 신선하고 좋았다.,1,synthetic_educational
+SYN044,PAIR022,드라마,과장된 연출 때문에 감동을 느끼기 어려웠다.,0,synthetic_educational
+SYN045,PAIR023,드라마,비극적인 장면도 아름답게 표현해 인상적이었다.,1,synthetic_educational
+SYN046,PAIR023,드라마,감정을 강요하는 장면이 많아 불편했다.,0,synthetic_educational
+SYN047,PAIR024,드라마,뻔할 줄 알았는데 예상보다 재미있었다.,1,synthetic_educational
+SYN048,PAIR024,드라마,기대했던 반전이 없어서 재미없었다.,0,synthetic_educational
+SYN049,PAIR025,공연,배우들의 노래가 훌륭해서 공연 내내 감동했다.,1,synthetic_educational
+SYN050,PAIR025,공연,배우들의 노래가 불안해서 공연에 집중하기 어려웠다.,0,synthetic_educational
+SYN051,PAIR026,공연,무대와 조명이 아름다워서 보는 재미가 있었다.,1,synthetic_educational
+SYN052,PAIR026,공연,무대는 아름답지만 이야기가 지루해서 실망했다.,0,synthetic_educational
+SYN053,PAIR027,공연,현장의 생생한 에너지 덕분에 즐거운 시간이었다.,1,synthetic_educational
+SYN054,PAIR027,공연,대사가 잘 들리지 않아 답답한 시간이었다.,0,synthetic_educational
+SYN055,PAIR028,공연,작은 극장이지만 연기가 좋아 몰입할 수 있었다.,1,synthetic_educational
+SYN056,PAIR028,공연,인물 사이의 호흡이 어색해서 몰입하기 어려웠다.,0,synthetic_educational
+SYN057,PAIR029,공연,음악과 이야기가 자연스럽게 이어져 만족했다.,1,synthetic_educational
+SYN058,PAIR029,공연,음악과 이야기가 따로 흘러 아쉬웠다.,0,synthetic_educational
+SYN059,PAIR030,공연,다시 표를 구해서 보고 싶을 만큼 좋았다.,1,synthetic_educational
+SYN060,PAIR030,공연,다시 표를 구해서 보고 싶지는 않은 공연이었다.,0,synthetic_educational
+SYN061,PAIR031,공연,관객과 호흡하는 장면이 재미있고 인상적이었다.,1,synthetic_educational
+SYN062,PAIR031,공연,관객에게 억지로 반응을 요구해서 불편했다.,0,synthetic_educational
+SYN063,PAIR032,공연,공연의 메시지가 따뜻해서 오래 기억에 남는다.,1,synthetic_educational
+SYN064,PAIR032,공연,공연의 메시지가 모호해서 내용이 기억나지 않는다.,0,synthetic_educational
+SYN065,PAIR033,공연,마지막 노래의 여운이 깊어 추천하고 싶다.,1,synthetic_educational
+SYN066,PAIR033,공연,마지막 장면이 급하게 끝나 만족스럽지 않았다.,0,synthetic_educational
+SYN067,PAIR034,공연,익숙한 작품을 새롭게 해석해서 신선했다.,1,synthetic_educational
+SYN068,PAIR034,공연,익숙한 작품인데 새 해석이 설득력 없어 아쉬웠다.,0,synthetic_educational
+SYN069,PAIR035,공연,대사가 적어도 몸짓으로 전하는 이야기가 좋았다.,1,synthetic_educational
+SYN070,PAIR035,공연,배우의 몸짓이 과장되어 감정을 이해하기 어려웠다.,0,synthetic_educational
+SYN071,PAIR036,공연,슬픈 장면에서 흘린 눈물까지 소중한 경험이었다.,1,synthetic_educational
+SYN072,PAIR036,공연,표값이 아깝다고 느낄 만큼 실망스러운 경험이었다.,0,synthetic_educational
+SYN073,PAIR037,전시,작품의 배치가 자연스러워 편하게 감상했다.,1,synthetic_educational
+SYN074,PAIR037,전시,작품의 배치가 혼란스러워 감상하기 어려웠다.,0,synthetic_educational
+SYN075,PAIR038,전시,설명이 친절해서 낯선 작품도 흥미롭게 봤다.,1,synthetic_educational
+SYN076,PAIR038,전시,설명이 부족해서 작품을 이해하지 못했다.,0,synthetic_educational
+SYN077,PAIR039,전시,빛을 활용한 공간이 아름다워 만족스러웠다.,1,synthetic_educational
+SYN078,PAIR039,전시,공간은 화려하지만 볼 작품이 적어서 실망했다.,0,synthetic_educational
+SYN079,PAIR040,전시,작가의 생각을 깊게 느낄 수 있어 좋았다.,1,synthetic_educational
+SYN080,PAIR040,전시,작가의 생각을 설명하는 글이 너무 어려웠다.,0,synthetic_educational
+SYN081,PAIR041,전시,아이디어가 신선해서 천천히 둘러보고 싶었다.,1,synthetic_educational
+SYN082,PAIR041,전시,비슷한 작품만 반복되어 신선하지 않았다.,0,synthetic_educational
+SYN083,PAIR042,전시,규모는 작지만 작품 하나하나가 훌륭했다.,1,synthetic_educational
+SYN084,PAIR042,전시,규모에 비해 내용이 부족해서 아쉬웠다.,0,synthetic_educational
+SYN085,PAIR043,전시,다양한 시선을 만날 수 있는 의미 있는 전시였다.,1,synthetic_educational
+SYN086,PAIR043,전시,사진을 찍는 공간만 많아 작품 감상이 불편했다.,0,synthetic_educational
+SYN087,PAIR044,전시,사진보다 실제 작품이 더 매력적이고 좋았다.,1,synthetic_educational
+SYN088,PAIR044,전시,홍보 사진보다 실제 전시가 빈약해서 실망했다.,0,synthetic_educational
+SYN089,PAIR045,전시,오디오 설명이 이해를 도와 감상이 즐거웠다.,1,synthetic_educational
+SYN090,PAIR045,전시,오디오 설명이 너무 짧아 도움이 되지 않았다.,0,synthetic_educational
+SYN091,PAIR046,전시,친구와 이야기를 나누며 보기 좋은 전시다.,1,synthetic_educational
+SYN092,PAIR046,전시,동선이 복잡해서 둘러보는 내내 답답했다.,0,synthetic_educational
+SYN093,PAIR047,전시,불편한 주제를 진지하게 다뤄서 인상적이었다.,1,synthetic_educational
+SYN094,PAIR047,전시,진지한 주제인데 설명이 피상적이라 아쉬웠다.,0,synthetic_educational
+SYN095,PAIR048,전시,화려하지 않아도 조용한 울림이 있어 추천한다.,1,synthetic_educational
+SYN096,PAIR048,전시,화려한 조명만 기억나고 작품은 별로였다.,0,synthetic_educational
+SYN097,PAIR049,웹툰,그림체가 매력적이고 이야기도 재미있다.,1,synthetic_educational
+SYN098,PAIR049,웹툰,그림체는 매력적이지만 이야기가 재미없다.,0,synthetic_educational
+SYN099,PAIR050,웹툰,인물의 감정이 섬세하게 표현되어 몰입했다.,1,synthetic_educational
+SYN100,PAIR050,웹툰,인물의 감정 변화가 갑작스러워 몰입하기 어렵다.,0,synthetic_educational
+SYN101,PAIR051,웹툰,매주 새로운 전개가 흥미로워 기다리게 된다.,1,synthetic_educational
+SYN102,PAIR051,웹툰,매주 같은 전개를 반복해서 지루하다.,0,synthetic_educational
+SYN103,PAIR052,웹툰,따뜻한 대사 덕분에 읽고 나서 기분이 좋다.,1,synthetic_educational
+SYN104,PAIR052,웹툰,대사가 어색해서 읽고 나서도 공감되지 않는다.,0,synthetic_educational
+SYN105,PAIR053,웹툰,복선을 자연스럽게 회수해서 결말이 만족스럽다.,1,synthetic_educational
+SYN106,PAIR053,웹툰,복선을 설명하지 않고 끝내서 결말에 실망했다.,0,synthetic_educational
+SYN107,PAIR054,웹툰,짧은 장면으로 큰 감동을 주는 훌륭한 작품이다.,1,synthetic_educational
+SYN108,PAIR054,웹툰,감동을 주려는 장면이 억지스럽고 별로였다.,0,synthetic_educational
+SYN109,PAIR055,웹툰,유머가 신선하고 인물들이 사랑스럽다.,1,synthetic_educational
+SYN110,PAIR055,웹툰,유머가 불쾌하고 인물들이 평면적이다.,0,synthetic_educational
+SYN111,PAIR056,웹툰,어두운 소재지만 이야기를 풀어내는 방식이 좋았다.,1,synthetic_educational
+SYN112,PAIR056,웹툰,어두운 소재를 자극적으로만 다뤄 아쉬웠다.,0,synthetic_educational
+SYN113,PAIR057,웹툰,처음엔 낯설었지만 읽을수록 재미있고 좋았다.,1,synthetic_educational
+SYN114,PAIR057,웹툰,처음엔 재미있었지만 읽을수록 지루해졌다.,0,synthetic_educational
+SYN115,PAIR058,웹툰,악역이 미워질 만큼 인물 묘사가 생생하고 훌륭하다.,1,synthetic_educational
+SYN116,PAIR058,웹툰,악역의 행동에 이유가 없어 이야기가 엉성하다.,0,synthetic_educational
+SYN117,PAIR059,웹툰,전혀 지루하지 않은 전개라 추천하고 싶다.,1,synthetic_educational
+SYN118,PAIR059,웹툰,전혀 재미있지 않은 전개라 추천하기 어렵다.,0,synthetic_educational
+SYN119,PAIR060,웹툰,작화의 작은 변화까지 섬세해서 다시 읽고 싶다.,1,synthetic_educational
+SYN120,PAIR060,웹툰,작화가 갈수록 거칠어져 다시 읽고 싶지 않다.,0,synthetic_educational

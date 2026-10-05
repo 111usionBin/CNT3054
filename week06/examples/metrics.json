@@ -1,0 +1,77 @@
+{
+  "data": {
+    "input_rows": 120,
+    "deduplicated_rows": 120,
+    "duplicates_removed": 0,
+    "groups": 60,
+    "source_types": [
+      "synthetic_educational"
+    ]
+  },
+  "data_sha256": "02f5a60f2f4ede678a12c810fa154361f5ce0a25938569cb59b04fc2023b1f72",
+  "seed": 42,
+  "split_method": "StratifiedGroupKFold: 5 folds then 4 folds",
+  "split_sizes": {
+    "train": 72,
+    "validation": 24,
+    "test": 24
+  },
+  "split_label_counts": {
+    "train": {
+      "0": 36,
+      "1": 36
+    },
+    "validation": {
+      "0": 12,
+      "1": 12
+    },
+    "test": {
+      "0": 12,
+      "1": 12
+    }
+  },
+  "selection_metric": "validation f1_macro; ties prefer unigram",
+  "selected_model": "unigram",
+  "selected_ngram_range": [
+    1,
+    1
+  ],
+  "fit_scope": "train only (including vocabulary and IDF); no validation refit",
+  "positive_label": 1,
+  "decision_rule": "sklearn predict; probability ties use class 0",
+  "test_evaluated": true,
+  "versions": {
+    "python": "3.12.14",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.8.0"
+  },
+  "warning": "Synthetic educational scores do not estimate real audience or domain-transfer accuracy. Probabilities are not sentiment intensity or guaranteed correctness.",
+  "test_scores": [
+    {
+      "model": "majority_baseline",
+      "accuracy": 0.5,
+      "precision_positive": 0.0,
+      "recall_positive": 0.0,
+      "f1_positive": 0.0,
+      "f1_macro": 0.3333333333333333
+    },
+    {
+      "model": "unigram",
+      "accuracy": 0.8333333333333334,
+      "precision_positive": 0.7857142857142857,
+      "recall_positive": 0.9166666666666666,
+      "f1_positive": 0.8461538461538461,
+      "f1_macro": 0.8321678321678322
+    }
+  ],
+  "test_confusion_matrix_labels_0_1": [
+    [
+      9,
+      3
+    ],
+    [
+      1,
+      11
+    ]
+  ]
+}

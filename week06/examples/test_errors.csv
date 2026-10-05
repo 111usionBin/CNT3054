@@ -1,0 +1,5 @@
+﻿review_id,group_id,domain,text,label,prediction,p_positive,correct,error_type,known_features
+SYN072,PAIR036,공연,표값이 아깝다고 느낄 만큼 실망스러운 경험이었다.,0,1,0.5803603979813488,False,FP,2
+SYN089,PAIR045,전시,오디오 설명이 이해를 도와 감상이 즐거웠다.,1,0,0.4703667486358202,False,FN,2
+SYN110,PAIR055,웹툰,유머가 불쾌하고 인물들이 평면적이다.,0,1,0.5046081520591321,False,FP,0
+SYN114,PAIR057,웹툰,처음엔 재미있었지만 읽을수록 지루해졌다.,0,1,0.5046081520591321,False,FP,0

@@ -1,0 +1,5 @@
+﻿review_id,group_id,domain,text,label,prediction,p_positive,correct,error_type,known_features
+SYN012,PAIR006,영화,주인공의 행동이 이해되지 않아 답답했다.,0,1,0.5022407951921867,False,FP,1
+SYN025,PAIR013,드라마,인물들의 대화가 자연스럽고 이야기가 재미있다.,1,0,0.48715627525580657,False,FN,2
+SYN057,PAIR029,공연,음악과 이야기가 자연스럽게 이어져 만족했다.,1,0,0.48469413953193113,False,FN,2
+SYN092,PAIR046,전시,동선이 복잡해서 둘러보는 내내 답답했다.,0,1,0.5046081520591321,False,FP,0
