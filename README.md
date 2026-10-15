@@ -16,4 +16,4 @@ Both scripts include checks that skip installation when tools are already instal
 
 [NVIDIA zero-shot + BERT 비교 실습](week07/README.md): Word2Vec, 문장 임베딩, BERT 추론, NVIDIA 무료 API zero-shot 감정분류와 동일 문장 비교.
 
-[Colab에서 7주차 실습 열기](https://colab.research.google.com/github/111usionBin/CNT3054/blob/main/week07/week07_context_sentiment.ipynb)
+[Colab에서 7주차 실습 열기](https://colab.research.google.com/github/111usionBin/CNT3054/blob/week07-nvidia-lab/week07/week07_context_sentiment.ipynb)

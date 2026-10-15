@@ -2,7 +2,7 @@
 
 **문맥을 이해하는 감정분석은 기존 방식과 어떻게 다른가?**
 
-[▶ Colab에서 실습 열기](https://colab.research.google.com/github/111usionBin/CNT3054/blob/main/week07/week07_context_sentiment.ipynb)
+[▶ Colab에서 실습 열기](https://colab.research.google.com/github/111usionBin/CNT3054/blob/week07-nvidia-lab/week07/week07_context_sentiment.ipynb)
 
 [실습 노트북](week07_context_sentiment.ipynb) · [NVIDIA 모델 페이지](https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b)
 
