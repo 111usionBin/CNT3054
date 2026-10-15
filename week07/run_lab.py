@@ -1,10 +1,9 @@
-"""VS Code terminal entry point. Run `python run_lab.py --help`."""
+"""Week 7 entry point for an existing uv course environment."""
 import argparse
 import getpass
 import json
 import os
 from pathlib import Path
-import shutil
 import sys
 import warnings
 from datetime import datetime, timezone
@@ -26,11 +25,10 @@ def client_from_terminal():
     return lab.make_client(key)
 
 
-def archive_results(folder):
-    archive = shutil.make_archive(str(folder), "zip", root_dir=folder)
+def announce_results(folder):
     print(f"\n결과 폴더: {folder}")
-    print(f"제출 ZIP: {archive}")
-    return Path(archive)
+    print("제출물: 실제 결과를 해석한 A4 2쪽 내외 보고서 PDF 1개")
+    return Path(folder)
 
 
 def analyze(use_nvidia=False, use_bert=False, model=lab.MODEL_ID):
@@ -56,7 +54,7 @@ def analyze(use_nvidia=False, use_bert=False, model=lab.MODEL_ID):
         "bert_executed": use_bert, "bert_revision": revision,
         "methods_executed": scores.method.tolist(),
     })
-    archive_results(folder)
+    announce_results(folder)
     return folder
 
 
@@ -81,13 +79,13 @@ def embeddings():
         "sentence_shape": list(vectors.shape), "word2vec_shape": [32],
         "note": "Synthetic examples, similarity is not sentiment probability",
     }, ensure_ascii=False, indent=2), encoding="utf-8")
-    archive_results(folder)
+    announce_results(folder)
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="CNT3054 Week 7 · VS Code 터미널 실습")
     sub = parser.add_subparsers(dest="command", required=True)
-    sub.add_parser("baseline", help="사전 + TF-IDF 실행 및 결과 ZIP 저장 (API 없음)")
+    sub.add_parser("baseline", help="사전 + TF-IDF 실행 및 결과 CSV 저장 (API 없음)")
     sub.add_parser("prompt", help="zero-shot 지시문 확인 (API 없음)")
     smoke = sub.add_parser("smoke", help="숨김 키 입력 후 NVIDIA 1문장 연결 점검")
     smoke.add_argument("--model", default=lab.MODEL_ID)
