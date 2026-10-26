@@ -16,4 +16,6 @@ Both scripts include checks that skip installation when tools are already instal
 
 [NVIDIA zero-shot + BERT 비교 실습](week07/README.md): Word2Vec, 문장 임베딩, BERT 추론, NVIDIA 무료 API zero-shot 감정분류와 동일 문장 비교.
 
-[VS Code에서 7주차 실습 시작하기](week07/README.md#1-준비와-파일-받기) — `run_lab.py`와 Windows/macOS 터미널 명령 제공.
+[VS Code에서 7주차 실습 시작하기](week07/README.md) — `run_lab.py`와 Windows/macOS 터미널 명령 제공.
+
+[7주차 실습 강의자료](week07/PRACTICE_LECTURE.md) · [직접 라벨링할 데이터](week07/data/student_annotation.csv)

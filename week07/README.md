@@ -2,11 +2,11 @@
 
 첫 실습에서 만든 **VS Code + uv 환경**을 사용합니다. 같은 한국어 리뷰를 사전, TF-IDF, NVIDIA zero-shot으로 분류하고 BERT와 텍스트 임베딩을 비교합니다.
 
-**제출물은 실제 결과를 해석한 A4 2쪽 내외 보고서 PDF 1개입니다.**
+**제출물은 실제 결과를 해석한 A4 2쪽 이내 보고서 PDF 1개입니다.**
 
 ## 1. 기존 수업 폴더에 week07 추가
 
-1. [실습 브랜치](https://github.com/111usionBin/CNT3054/tree/week07-nvidia-lab)를 열고 브랜치 이름을 확인합니다.
+1. [기본 브랜치](https://github.com/111usionBin/CNT3054/tree/main)를 열고 브랜치 이름을 확인합니다.
 2. **Code → Download ZIP**을 누르고 압축을 풉니다.
 3. 압축을 푼 폴더 안의 **week07**을 첫 실습에서 사용한 수업 폴더 안에 복사합니다.
 4. VS Code의 **File → Open Folder**에서 기존 수업 폴더를 엽니다.
@@ -113,7 +113,7 @@ NVIDIA 미실행 시 `nvidia_executed: false`가 기록되고 LLM 지표 행은 
 
 ## 8. 제출 보고서
 
-**A4 2쪽 내외 보고서 PDF 1개**를 제출합니다. 첫 쪽 위에 이름과 학번을 적고 별도 표지 없이 본문을 시작합니다.
+**A4 2쪽 이내 보고서 PDF 1개**를 제출합니다. 첫 쪽 위에 이름과 학번을 적고 별도 표지 없이 본문을 시작합니다.
 
 ### 1쪽: 실행 조건과 지표 비교
 
@@ -151,3 +151,7 @@ NVIDIA 미실행 시 `nvidia_executed: false`가 기록되고 LLM 지표 행은 
 표준 진입점은 `run_lab.py`, 분석 구현은 `lab.py`입니다. 기존 노트북은 참고용입니다. 분석 구현은 Linux CPU에서 검증했고 NVIDIA 인증 실호출 결과는 본인 계정으로 생성합니다.
 
 참고: [uv 환경](https://docs.astral.sh/uv/pip/environments/), [uv 실행과 동기화](https://docs.astral.sh/uv/concepts/projects/sync/), [VS Code Python](https://code.visualstudio.com/docs/python/python-tutorial), [NVIDIA Quickstart](https://docs.api.nvidia.com/nim/docs/api-quickstart), [모델 API](https://docs.api.nvidia.com/nim/reference/nvidia-nemotron-3-ultra-550b-a55b).
+
+## 실습 강의와 데이터 점검
+
+[실습 강의자료](PRACTICE_LECTURE.md)를 순서대로 읽고 실행하세요. 모델 실행 전에 [직접 판정할 데이터](data/student_annotation.csv)를 작성하세요. `uv run --no-sync python week07/validate_data.py`로 데이터 구조를 점검할 수 있습니다. 보고서는 조별 대표 1명이 제출합니다.
