@@ -1,0 +1,4 @@
+numpy>=1.26,<3
+pandas>=2.2,<3
+scikit-learn>=1.6,<2
+kiwipiepy>=0.20,<0.23

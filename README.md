@@ -19,3 +19,9 @@ Both scripts include checks that skip installation when tools are already instal
 [VS Code에서 7주차 실습 시작하기](week07/README.md) — `run_lab.py`와 Windows/macOS 터미널 명령 제공.
 
 [7주차 실습 강의자료](week07/PRACTICE_LECTURE.md) · [직접 라벨링할 데이터](week07/data/student_annotation.csv)
+
+## Week 9 · 토픽모델링 Ⅰ: LDA 실습
+
+[실습 안내와 실행 명령](week09/README.md): CSV 입력, 한국어 전처리, LDA 추정, 토픽별 단어와 문서별 비율 해석, K 비교. API 키 없이 CPU에서 실행합니다.
+
+[예제 데이터와 설명](week09/data/README.md) · [실행 코드](week09/run_lda.py)
