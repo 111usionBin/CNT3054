@@ -1,0 +1,26 @@
+{
+  "input": "/workspace/scratch/63132ab63393/CNT3054/week10/data/concert_comments.csv",
+  "input_sha256": "a4a68d3dfc34e0818f5067fdfcd22cc5f69263d732a4fe279b4ff9e1e6c70741",
+  "stopwords_sha256": "5285741c6e8389aada0dc917aa73779a48984cbf856158bb282dd595f7acab18",
+  "n_documents": 120,
+  "excluded": 0,
+  "vocabulary": 109,
+  "k": 4,
+  "seed": 42,
+  "alpha": 0.1,
+  "eta": 0.1,
+  "max_iter": 50,
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.8.0",
+    "kiwipiepy": "0.22.2",
+    "matplotlib": "3.10.8"
+  },
+  "period_order": [
+    "2026-09",
+    "2026-10"
+  ],
+  "aggregation": "equal document weights",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+}

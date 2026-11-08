@@ -25,3 +25,9 @@ Both scripts include checks that skip installation when tools are already instal
 [실습 안내와 실행 명령](week09/README.md): CSV 입력, 한국어 전처리, LDA 추정, 토픽별 단어와 문서별 비율 해석, K 비교. API 키 없이 CPU에서 실행합니다.
 
 [예제 데이터와 설명](week09/data/README.md) · [실행 코드](week09/run_lda.py)
+
+## Week 10 · 토픽모델링 Ⅱ: 해석과 변화 분석
+
+[실습 안내](week10/README.md): 공연 댓글의 대표·혼합·무작위 문서 읽기, 토픽 해석 기록, 시기별 수와 비중 비교, 근거 인용 검사. GitHub Desktop에서 갱신하고 VS Code에서 실행합니다.
+
+[데이터](week10/data/concert_comments.csv) · [실행 코드](week10/run_lab.py) · [기준 실행 결과](week10/examples/README.md)

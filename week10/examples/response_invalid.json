@@ -1,0 +1,14 @@
+{
+  "authorship": "수업용 수동 작성 오류 입력",
+  "claims": [
+    {
+      "statement": "모든 관객이 같은 의견이다.",
+      "citations": [
+        {
+          "document_id": "D081",
+          "quote": "모든 관객이 같은 의견이다."
+        }
+      ]
+    }
+  ]
+}

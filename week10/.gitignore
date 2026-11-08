@@ -1,0 +1,6 @@
+outputs/
+work/
+__pycache__/
+*.pyc
+team_outputs/
+data/my_comments.csv
