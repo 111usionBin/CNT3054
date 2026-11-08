@@ -1,0 +1,8 @@
+{
+  "input": "week10/data/my_comments.csv",
+  "text_column": "text",
+  "date_column": null,
+  "encoding": "utf-8-sig",
+  "topics": 4,
+  "out": "week10/team_outputs"
+}

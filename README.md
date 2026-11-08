@@ -28,6 +28,6 @@ Both scripts include checks that skip installation when tools are already instal
 
 ## Week 10 · 토픽모델링 Ⅱ: 해석과 변화 분석
 
-[실습 안내](week10/README.md): 공연 댓글의 대표·혼합·무작위 문서 읽기, 토픽 해석 기록, 시기별 수와 비중 비교, 근거 인용 검사. GitHub Desktop에서 갱신하고 VS Code에서 실행합니다.
+[실습 안내](week10/README.md): 조별로 수집한 CSV를 넣어 토픽별 단어와 원문을 함께 읽습니다. 작성일이 여러 달에 걸친 자료는 월별 비중도 비교합니다. 별도 제출물은 없습니다.
 
-[데이터](week10/data/concert_comments.csv) · [실행 코드](week10/run_lab.py) · [기준 실행 결과](week10/examples/README.md)
+[실행 코드](week10/team_lab.py) · [데이터 열 설정](week10/team_config.json)
