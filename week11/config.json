@@ -1,0 +1,13 @@
+{
+  "input": "data/my_data.csv",
+  "text_column": "document",
+  "encoding": "utf-8-sig",
+  "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "min_cluster_size": 15,
+  "min_samples": 5,
+  "remove_duplicates": true,
+  "batch_size": 16,
+  "device": "cpu",
+  "seed": 42,
+  "output": "outputs"
+}

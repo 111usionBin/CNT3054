@@ -1,0 +1,7 @@
+data/*
+!data/.gitkeep
+outputs*/
+.cache/
+.venv/
+*.zip
+__pycache__/
