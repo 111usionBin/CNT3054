@@ -31,3 +31,9 @@ Both scripts include checks that skip installation when tools are already instal
 [실습 안내](week10/README.md): 조별로 수집한 CSV를 넣어 토픽별 단어와 원문을 함께 읽습니다. 작성일이 여러 달에 걸친 자료는 월별 비중도 비교합니다. 별도 제출물은 없습니다.
 
 [실행 코드](week10/team_lab.py) · [데이터 열 설정](week10/team_config.json)
+
+## Week 12 · 영상 음성 전사와 화자 분리
+
+[실행 안내](week12/README.md): 유튜브 링크 하나로 Deepgram STT를 실행하고 화자별 발언·시작/종료 시간을 CSV·JSON·TXT·SRT로 저장합니다. API 키는 로컬 `.env`에서 읽습니다.
+
+[실행 코드](week12/transcribe_youtube.py) · [환경변수 예시](week12/.env.example)

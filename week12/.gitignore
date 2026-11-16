@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+outputs/
+*.wav
+*.mp3
+*.mp4
+*.webm
+*.m4a
+*.cookies.txt
+cookies.txt

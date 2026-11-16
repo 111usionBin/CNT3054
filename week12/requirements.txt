@@ -1,0 +1,2 @@
+yt-dlp[default]>=2025.11.12
+python-dotenv>=1.0,<2
