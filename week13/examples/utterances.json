@@ -1,0 +1,102 @@
+[
+  {
+    "utterance_id": "U0001",
+    "speaker_id": "SPEAKER_00",
+    "speaker_name": "화자 1",
+    "start_seconds": 0,
+    "end_seconds": 5,
+    "start_time": "00:00:00",
+    "end_time": "00:00:05",
+    "text": "오늘 작은 공연장의 마지막 무대를 제가 진행합니다. 두 분 모두 자리에 계시죠?"
+  },
+  {
+    "utterance_id": "U0002",
+    "speaker_id": "SPEAKER_01",
+    "speaker_name": "화자 2",
+    "start_seconds": 5,
+    "end_seconds": 9,
+    "start_time": "00:00:05",
+    "end_time": "00:00:09",
+    "text": "네, 음향석에서 마이크 두 개와 객석 스피커를 점검했습니다."
+  },
+  {
+    "utterance_id": "U0003",
+    "speaker_id": "SPEAKER_00",
+    "speaker_name": "화자 1",
+    "start_seconds": 9,
+    "end_seconds": 13,
+    "start_time": "00:00:09",
+    "end_time": "00:00:13",
+    "text": "첫 곡을 막 소개했는데 객석에서 제 목소리가 안 들린대요. 너무 걱정되네요."
+  },
+  {
+    "utterance_id": "U0004",
+    "speaker_id": "SPEAKER_01",
+    "speaker_name": "화자 2",
+    "start_seconds": 13,
+    "end_seconds": 18,
+    "start_time": "00:00:13",
+    "end_time": "00:00:18",
+    "text": "메인 출력이 또 끊겼어요. 제가 가장 공들인 부분이라 정말 아쉽습니다."
+  },
+  {
+    "utterance_id": "U0005",
+    "speaker_id": "SPEAKER_00",
+    "speaker_name": "화자 1",
+    "start_seconds": 18,
+    "end_seconds": 22,
+    "start_time": "00:00:18",
+    "end_time": "00:00:22",
+    "text": "관객 여러분, 스피커가 돌아올 때까지 저와 함께 후렴을 불러 주실래요?"
+  },
+  {
+    "utterance_id": "U0006",
+    "speaker_id": "SPEAKER_00",
+    "speaker_name": "화자 1",
+    "start_seconds": 22,
+    "end_seconds": 28,
+    "start_time": "00:00:22",
+    "end_time": "00:00:28",
+    "text": "객석이 노래하네요. 제가 객석 마이크를 올려서 그 소리를 무대에 보낼게요."
+  },
+  {
+    "utterance_id": "U0007",
+    "speaker_id": "SPEAKER_00",
+    "speaker_name": "화자 1",
+    "start_seconds": 28,
+    "end_seconds": 34,
+    "start_time": "00:00:28",
+    "end_time": "00:00:34",
+    "text": "첫 소절을 놓쳐서 아쉽지만 다 같이 불러 주셔서 정말 기뻐요."
+  },
+  {
+    "utterance_id": "U0008",
+    "speaker_id": "SPEAKER_01",
+    "speaker_name": "화자 2",
+    "start_seconds": 34,
+    "end_seconds": 38,
+    "start_time": "00:00:34",
+    "end_time": "00:00:38",
+    "text": "제 모니터에도 마지막 음까지 들어왔어요. 무사히 끝나서 마음이 놓입니다."
+  },
+  {
+    "utterance_id": "U0009",
+    "speaker_id": "SPEAKER_00",
+    "speaker_name": "화자 1",
+    "start_seconds": 38,
+    "end_seconds": 42,
+    "start_time": "00:00:38",
+    "end_time": "00:00:42",
+    "text": "공연장 분실물 창구는 오른쪽 출입구에 있습니다."
+  },
+  {
+    "utterance_id": "U0010",
+    "speaker_id": "SPEAKER_01",
+    "speaker_name": "화자 2",
+    "start_seconds": 42,
+    "end_seconds": 44,
+    "start_time": "00:00:42",
+    "end_time": "00:00:44",
+    "text": "네."
+  }
+]

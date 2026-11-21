@@ -1,0 +1,4 @@
+﻿comparison,model,task,matches,n,rate,predicted_abstain
+human_accuracy,bert,speaker,6,10,0.6,1
+human_accuracy,bert,emotion,3,10,0.3,7
+human_accuracy,bert,stage,4,10,0.4,4

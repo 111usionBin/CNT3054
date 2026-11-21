@@ -1,0 +1,6 @@
+﻿model,speaker,emotion,count,speaker_total,share
+bert,SPEAKER_00,판단유보,1,1,1.0
+bert,SPEAKER_01,기쁨,2,8,0.25
+bert,SPEAKER_01,아쉬움,1,8,0.125
+bert,SPEAKER_01,판단유보,5,8,0.625
+bert,판단유보,판단유보,1,1,1.0

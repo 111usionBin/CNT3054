@@ -1,0 +1,132 @@
+{
+  "U0001": {
+    "bert": {
+      "speaker": "SPEAKER_00",
+      "emotion": "중립",
+      "stage": "기"
+    },
+    "gpt": {
+      "speaker": "SPEAKER_00",
+      "emotion": "중립",
+      "stage": "기",
+      "evidence": "오늘 작은 공연장의 마지막 무대를 제가 진행합니다."
+    }
+  },
+  "U0002": {
+    "bert": {
+      "speaker": "SPEAKER_01",
+      "emotion": "중립",
+      "stage": "기"
+    },
+    "gpt": {
+      "speaker": "SPEAKER_01",
+      "emotion": "중립",
+      "stage": "기",
+      "evidence": "네, 음향석에서 마이크 두 개와 객석 스피커를 점검"
+    }
+  },
+  "U0003": {
+    "bert": {
+      "speaker": "SPEAKER_00",
+      "emotion": "불안",
+      "stage": "승"
+    },
+    "gpt": {
+      "speaker": "SPEAKER_00",
+      "emotion": "불안",
+      "stage": "승",
+      "evidence": "첫 곡을 막 소개했는데 객석에서 제 목소리가 안 들"
+    }
+  },
+  "U0004": {
+    "bert": {
+      "speaker": "SPEAKER_01",
+      "emotion": "아쉬움",
+      "stage": "승"
+    },
+    "gpt": {
+      "speaker": "SPEAKER_01",
+      "emotion": "불안",
+      "stage": "승",
+      "evidence": "메인 출력이 또 끊겼어요. 제가 가장 공들인 부분이"
+    }
+  },
+  "U0005": {
+    "bert": {
+      "speaker": "SPEAKER_00",
+      "emotion": "중립",
+      "stage": "전"
+    },
+    "gpt": {
+      "speaker": "SPEAKER_00",
+      "emotion": "중립",
+      "stage": "전",
+      "evidence": "관객 여러분, 스피커가 돌아올 때까지 저와 함께 후"
+    }
+  },
+  "U0006": {
+    "bert": {
+      "speaker": "SPEAKER_01",
+      "emotion": "중립",
+      "stage": "승"
+    },
+    "gpt": {
+      "speaker": "SPEAKER_01",
+      "emotion": "중립",
+      "stage": "전",
+      "evidence": "객석이 노래하네요. 제가 객석 마이크를 올려서 그 "
+    }
+  },
+  "U0007": {
+    "bert": {
+      "speaker": "SPEAKER_00",
+      "emotion": "기쁨",
+      "stage": "결"
+    },
+    "gpt": {
+      "speaker": "SPEAKER_00",
+      "emotion": "복합",
+      "stage": "결",
+      "evidence": "첫 소절을 놓쳐서 아쉽지만 다 같이 불러 주셔서 정"
+    }
+  },
+  "U0008": {
+    "bert": {
+      "speaker": "SPEAKER_01",
+      "emotion": "기쁨",
+      "stage": "결"
+    },
+    "gpt": {
+      "speaker": "SPEAKER_01",
+      "emotion": "기쁨",
+      "stage": "결",
+      "evidence": "제 모니터에도 마지막 음까지 들어왔어요. 무사히 끝"
+    }
+  },
+  "U0009": {
+    "bert": {
+      "speaker": "판단유보",
+      "emotion": "중립",
+      "stage": "해당없음"
+    },
+    "gpt": {
+      "speaker": "판단유보",
+      "emotion": "중립",
+      "stage": "해당없음",
+      "evidence": "공연장 분실물 창구는 오른쪽 출입구에 있습니다."
+    }
+  },
+  "U0010": {
+    "bert": {
+      "speaker": "판단유보",
+      "emotion": "판단유보",
+      "stage": "판단유보"
+    },
+    "gpt": {
+      "speaker": "판단유보",
+      "emotion": "판단유보",
+      "stage": "판단유보",
+      "evidence": "네."
+    }
+  }
+}

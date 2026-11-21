@@ -1,0 +1,11 @@
+﻿utterance_id,speaker,emotion,stage
+U0001,SPEAKER_00,중립,기
+U0002,SPEAKER_01,중립,기
+U0003,SPEAKER_00,불안,승
+U0004,SPEAKER_01,아쉬움,승
+U0005,SPEAKER_00,중립,전
+U0006,SPEAKER_01,중립,전
+U0007,SPEAKER_00,복합,결
+U0008,SPEAKER_01,기쁨,결
+U0009,판단유보,중립,해당없음
+U0010,판단유보,판단유보,판단유보
