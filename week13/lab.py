@@ -75,7 +75,8 @@ def context(rows, i, profiles, rubric):
 
 
 def post(url, payload, key=None):
-    headers = {"Content-Type": "application/json"}
+    service = "Groq" if key else "BERT"
+    headers = {"Content-Type": "application/json", "User-Agent": "CNT3054-week13/1.1"}
     if key:
         headers["Authorization"] = "Bearer " + key
     body = json.dumps(payload, ensure_ascii=False).encode()
@@ -89,7 +90,21 @@ def post(url, payload, key=None):
                 wait = exc.headers.get("Retry-After", "")
                 time.sleep(min(60, float(wait)) if wait.replace(".", "", 1).isdigit() else (5 * (attempt + 1)))
                 continue
-            raise ValueError(f"API HTTP {exc.code}. 키·모델·한도·서버 상태를 확인한 뒤 같은 명령을 다시 실행하세요.") from None
+            raw = exc.read(4096).decode("utf-8", errors="replace")
+            if key:
+                raw = raw.replace(key, "[redacted]")
+            detail = ""
+            try:
+                problem = json.loads(raw)
+                if isinstance(problem, dict):
+                    info = problem.get("error", problem)
+                    if isinstance(info, dict):
+                        detail = str(info.get("message") or info.get("detail") or info.get("code") or "")
+            except ValueError:
+                pass
+            if not detail:
+                detail = "서버가 상세 사유를 제공하지 않았습니다."
+            raise ValueError(f"{service} HTTP {exc.code}. {' '.join(detail.split())[:350]}") from None
         except error.URLError:
             raise ValueError("API 연결에 실패했습니다. BERT 터미널 또는 인터넷 연결을 확인하세요.") from None
 
