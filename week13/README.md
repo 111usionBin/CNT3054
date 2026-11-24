@@ -1,170 +1,82 @@
-# 13주차 · 방송에서 누가 어떤 감정으로 말했을까?
+# CNT3054 · 문화콘텐츠와 자연어처리
+## 13주차 | 한 공연을 두 언어모델로 읽기
 
-CNT3054 문화콘텐츠와 자연어처리 · 장수빈
+공연 중계의 “제가 객석 마이크를 올릴게요”는 음향 감독의 말일까? 스피커 고장에 대응해 새로운 방법이 등장한 순간일까? 같은 방송을 한국어 RoBERTa와 GPT-OSS로 읽고, 두 답이 갈린 장면을 시각과 함께 찾아본다. Windows PowerShell + VS Code 기준이다.
 
-12주차에는 음성을 듣고 화자가 바뀐 시각을 찾았다. 이번에는 같은 방송의 **전사 텍스트**를 한국어 RoBERTa와 GPT-OSS에 주고, 각 발화의 화자·감정·기승전결을 사람이 붙인 라벨과 비교한다. 아래 명령은 **Windows PowerShell** 기준이다. 이미 전사를 마쳤다면 1단계에서 Groq 키를 확인하고, 2~3단계를 거쳐 **5단계**로 이동한다.
+### 1. 결과부터 열어 보기
 
-## 1. API 키 발급받기
+1. GitHub Desktop에서 `CNT3054`의 `main`을 선택하고 **Fetch origin → Pull origin**으로 갱신한다. **Open in Visual Studio Code**로 저장소를 연 뒤 **파일 → 폴더 열기**에서 `lab.py`가 있는 `week13`을 선택한다.
+2. **터미널 → 새 터미널**을 눌러 아래 명령을 실행한다. 첫 번째 명령은 실습 전용 파이썬을 준비한다. 12주차와 같은 uv를 사용한다.
 
-| 용도 | 발급 방법 | 저장할 파일 |
+```powershell
+uv venv --python 3.12
+.\.venv\Scripts\python.exe lab.py demo
+```
+
+3. 왼쪽 파일 목록에서 `outputs/demo/predictions.csv`를 연다. 위쪽에서 **U0006**을 찾는다. `source_speaker`는 12주차 번호이고, `speaker`는 화면의 `model`이 추정한 번호다. 이 발화의 서사 판정은 모의 예제에서 BERT가 ‘승’, GPT가 ‘전’이다.
+4. `examples/utterances.json`의 22~28초 발화를 다시 읽는다. 새 행동을 ‘전’으로 볼지, 앞선 요청을 실행하는 ‘승’으로 볼지 팀의 기준으로 골라 본다.
+
+`demo`는 작성된 응답을 재생하므로 API 키와 인터넷이 필요 없다(파이썬 설치 후). `examples/actual_bert/`에는 같은 창작 전사를 **실제 모델 API로 실행한 결과**가 따로 있다. 모의 예제 수치로 성능을 보고하지 않는다.
+
+### 2. 무료로 두 API 준비하기
+
+| API | 학생이 준비할 것 | 데이터와 비용 |
 |---|---|---|
-| 영상 음성 전사와 화자 분리 | [Deepgram Console](https://console.deepgram.com/)에 로그인한다. 프로젝트의 **API Keys**에서 키를 만들고 표시된 값을 복사한다. [발급 안내](https://developers.deepgram.com/docs/create-additional-api-keys) | `week12/.env`의 `DEEPGRAM_API_KEY` |
-| GPT로 발화 분류 | [Groq Console의 API Keys](https://console.groq.com/keys)에서 **Create API Key**를 누른다. 키 이름을 정하고 생성된 값을 복사한다. | `week13/.env`의 `GROQ_API_KEY` |
+| 한국어 BERT 계열 | 한국어 자연어 추론 모델 Huffon/klue-roberta-base-nli를 PC에서 실행 | 최초에 가중치 약 443MB(약 422MiB)와 패키지를 받는다. 이후 같은 PC의 HTTP API를 호출한다. GPU·키·호출 요금이 필요 없다. |
+| GPT 계열 | GroqCloud 무료 계정의 API 키와 OpenAI 공개 가중치 모델 openai/gpt-oss-20b | Groq 서버로 대상 발화·앞뒤 문맥·역할 소개·기준표를 보낸다. 공개 또는 실습에 제공할 수 있는 전사를 사용한다. |
 
-기존 키가 해당 파일에 저장되어 있으면 그대로 사용한다. 한국어 BERT 모델은 내 PC에서 실행하므로 키가 필요 없다. Deepgram에는 영상 음성이, Groq에는 분석할 발화와 앞뒤 문맥·역할 소개·평가 기준이 전송된다.
+Groq Console에 로그인해 **API Keys → Create API Key**를 고른다. 키는 팀 PC의 `week13/.env`에만 적는다. Deepgram 키는 12주차 음성 전사용이다. Free Plan 문서의 기본 조직 한도는 이 모델 기준 분당 30요청·8,000토큰, 하루 1,000요청·200,000토큰이다. 실제 값은 계정 Limits 메뉴가 기준이다. 같은 조직을 여러 조가 쓰면 사용량도 합쳐진다. 수업 기본값은 앞 12발화이고 GPT 요청은 발화당 1건이다. 무료 한도는 바뀔 수 있다.
 
-## 2. 사용할 파이썬 선택하기
+[Groq API 키](https://console.groq.com/keys) · [무료 한도](https://console.groq.com/docs/rate-limits) · [모델 지원](https://console.groq.com/docs/model/openai/gpt-oss-20b) · [공개 한국어 모델](https://huggingface.co/Huffon/klue-roberta-base-nli)
 
-GitHub Desktop에서 **Fetch origin → Pull origin → Open in Visual Studio Code** 순서로 연다. VS Code에서 **터미널 → 새 터미널**을 선택한다. 아래 두 줄은 현재 위치가 `CNT3054`, `week12`, `week13` 중 어디든 저장소의 `week13`으로 이동한다.
-
-~~~powershell
-$repo = git rev-parse --show-toplevel
-Set-Location (Join-Path $repo 'week13')
-~~~
-
-**A. 13주차용 `.venv`를 새로 만들 학생**은 아래 한 줄을 실행한다. 이미 이 폴더에 환경을 만들었다면 기존 환경을 선택한다.
-
-~~~powershell
-if (!(Test-Path .\.venv\Scripts\python.exe)) { uv venv --python 3.11 .venv }; $py = (Resolve-Path .\.venv\Scripts\python.exe).Path
-~~~
-
-**B. 지난주 `week12` 환경을 계속 쓸 학생**은 아래 한 줄을 실행한다. 프롬프트가 이미 `(week12)`인 경우에도 같은 명령을 쓸 수 있다.
-
-~~~powershell
-$py = (Resolve-Path ..\week12\.venv\Scripts\python.exe).Path
-~~~
-
-이제부터 `& $py`는 방금 선택한 파이썬을 실행한다. 아래 첫 줄로 경로를 확인하고, 두 번째 줄로 그 환경에 실습 패키지를 설치한다. 이후 명령은 같은 터미널에서 이어서 실행한다.
-
-~~~powershell
-& $py -c "import sys; print(sys.executable)"
-uv pip install --python "$py" -r requirements-bert.txt
-~~~
-
-## 3. 키 파일과 전사 저장 경로 준비하기
-
-~~~powershell
-$w12 = Join-Path $repo 'week12'
-$transcripts = Join-Path $w12 'outputs'
-New-Item -ItemType Directory -Force -Path $transcripts | Out-Null
+```powershell
+uv pip install --python .venv -r requirements-bert.txt
 if (!(Test-Path .env)) { Copy-Item .env.example .env }
 notepad .env
-~~~
+```
 
-메모장에서 `GROQ_API_KEY=` 뒤에 Groq 키를 넣고 저장한다. 나머지 두 줄은 예제 파일에 들어 있는 설정을 사용한다.
+메모장에서 `GROQ_API_KEY=` 뒤에 본인 키를 붙여 넣고 저장한다. 새 파일 이름은 정확히 `.env`다. Windows에서 가상환경을 활성화할 필요 없이 아래처럼 실행할 수 있다. macOS/Linux에서는 `.\.venv\Scripts\python.exe`를 `./.venv/bin/python`으로 바꾸고 `.env.example`을 `.env`로 복사한다.
 
-~~~dotenv
-GROQ_API_KEY=여기에_Groq_키
-GPT_MODEL=openai/gpt-oss-20b
-BERT_API_URL=http://127.0.0.1:8013/predict
-~~~
+### 3. 예제 전사를 실제 API로 보내기
 
-`$transcripts`는 지난주 전사가 쌓이는 `week12/outputs` 폴더다. 이미 전사한 영상은 **5단계**에서 이 폴더를 읽으면 된다.
+**터미널 A**에서 한국어 모델 서버를 켠다. 최초 모델 다운로드가 끝나고 `Application startup complete`가 보이면 이 창을 열어 둔다.
 
-## 4. 새 영상을 사용할 때만 전사하기
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn bert_api:app --host 127.0.0.1 --port 8013
+```
 
-같은 터미널에서 전사 패키지를 설치하고 Deepgram 키 파일을 연다.
+**터미널 B**를 새로 열어 같은 폴더에서 아래 명령을 실행한다. 첫 시도는 3개만 보내도 된다.
 
-~~~powershell
-uv pip install --python "$py" -r ..\week12\requirements.txt
-& $py ..\week12\transcribe_youtube.py --setup
-notepad ..\week12\.env
-~~~
+```powershell
+.\.venv\Scripts\python.exe lab.py run --input examples/utterances.json --profiles examples/speakers.json --gold examples/gold.csv --limit 3 --out outputs/first3
+```
 
-`DEEPGRAM_API_KEY=` 뒤에 Deepgram 키를 넣고, 한국어 방송이면 `DEEPGRAM_MODEL=nova-3`, `DEEPGRAM_LANGUAGE=ko`를 확인한 뒤 저장한다. `--setup`은 키 파일을 준비하고 경로를 출력한다. 이미 키가 들어 있어도 같은 안내가 뜬다.
+| 화면에 보이는 내용 | 할 일 |
+|---|---|
+| 3/3 U0003, API 실행 완료 | `outputs/first3`의 CSV를 연다. |
+| BERT 연결 실패 | 터미널 A의 서버가 켜졌는지 확인한다. 브라우저에서 http://127.0.0.1:8013/docs 를 열어 같은 PC에서 접속되는지 본다. |
+| GPT 401 / 429 | 401이면 Groq에서 받은 키와 .env 위치를 확인한다. 429이면 요청·토큰 한도가 회복된 뒤 같은 명령을 다시 실행한다. 저장 완료된 응답은 재사용한다. |
+| 모델 다운로드가 어렵다 | 같은 명령에 `--backend gpt`를 붙이고 새 출력 폴더를 지정한다. 이 경우 `requirements.txt`만 설치해도 된다. |
+| GPT 키를 받지 못했다 | `--backend bert --out outputs/bert_only`로 BERT를 실제 호출한다. 두 모델의 비교 과정은 `demo`로 연습할 수 있다. |
 
-터미널에서 `ffmpeg -version`, `ffprobe -version`, `deno --version`이 실행되는지 확인한다. 처음 설치하는 PC의 설치 명령은 [12주차 준비 안내](../week12/README.md#준비)에 있다. 설치 후 터미널을 새로 열었다면 2~3단계에서 경로 변수를 다시 설정한다.
+### 4. 12주차에 수집한 우리 조 전사로 바꾸기
 
-~~~powershell
-& $py ..\week12\transcribe_youtube.py --output-dir "$transcripts"
-~~~
+1. 12주차 `week12/outputs/실행시각/utterances.json`을 이번 폴더로 복사해 `team.json`으로 이름을 바꾼다. 동일한 열을 가진 `utterances.csv`도 지원한다. 영상이나 음성을 다시 올릴 필요가 없다.
+2. 후보 화자 목록과 사람 평가표를 만든다.
 
-입력창에 영상 링크를 붙여 넣는다. 전사가 끝나면 프로그램이 `outputs` 안에 실행시각 폴더를 만들고 `utterances.json`과 `deepgram_raw.json` 등을 저장한다. **13주차 입력은 발화별 텍스트와 화자 번호가 들어 있는 `utterances.json`이다.**
+```powershell
+.\.venv\Scripts\python.exe lab.py prepare --input team.json --out team_labels
+```
 
-## 5. 전사 파일을 번호로 선택하기
+3. `team_labels/speakers.json`을 VS Code로 연다. 원영상의 별도 구간을 보고 번호별 역할을 1~2개의 짧은 문장으로 쓴다. 예를 들어 “악기와 마이크를 담당한다. 음량을 조정한다.”처럼 표현한다. 평가할 발화의 인용이나 ID를 소개에 넣으면 답이 새어 나간다. 영상이 바뀌면 같은 번호여도 인물이 바뀔 수 있다.
+4. 모델 결과를 열기 전에 두 명이 앞 12발화를 각각 읽고 불일치를 조정해 `gold.csv`에 **speaker, emotion, stage**를 적는다. 이 실습의 화자 정답은 **텍스트로 귀속할 수 있는 후보**다. 영상에서 신원이 확인돼도 “네.”처럼 텍스트로 구별하기 어려우면 `판단유보`로 기록한다. 소리로 확인한 실제 인물 적중률을 따로 연구할 때는 그 기준으로 별도 표를 만든다. 기준표는 [HARNESS.md](HARNESS.md)에 있다. 미평가 칸은 빈칸으로 둔다.
+5. 아래 명령을 실행한다. `--limit`은 시작 시각 기준 앞에서부터 읽을 발화 수다. 전체를 읽으려면 실제 행 수 이상을 지정한다. 다른 클립이나 조건은 다른 `--out`에 저장한다.
 
-아래 블록을 한 번에 붙여 넣는다. 최신 전사가 1번이다. Enter를 누르면 1번을 선택하고, 다른 영상을 쓸 때는 목록의 번호만 입력한다.
+```powershell
+.\.venv\Scripts\python.exe lab.py run --input team.json --profiles team_labels/speakers.json --gold team_labels/gold.csv --limit 12 --out outputs/team01
+```
 
-~~~powershell
-$files = @(Get-ChildItem $transcripts -Filter utterances.json -File -Recurse | Sort-Object FullName -Descending)
-if ($files.Count -eq 0) { throw "week12/outputs에 utterances.json이 없습니다. 4단계 전사 결과를 확인하세요." }
-for ($i = 0; $i -lt $files.Count; $i++) { Write-Host "[$($i+1)] $($files[$i].Directory.Name)" }
-$choice = Read-Host '사용할 전사 번호 (Enter = 1)'
-if (!$choice) { $choice = '1' }
-if ($choice -notmatch '^[1-9][0-9]*$' -or [int]$choice -gt $files.Count) { throw '목록에 있는 번호를 선택하세요.' }
-$file = $files[([int]$choice - 1)].FullName
-$file
-~~~
-
-마지막 줄에 선택한 파일의 전체 경로가 보인다. 이제부터 `$file`이 그 파일을 가리킨다. 아래 명령으로 첫 12개 발화의 ID·화자·원문을 확인한다.
-
-~~~powershell
-Get-Content -Raw -Encoding UTF8 $file | ConvertFrom-Json | ForEach-Object { $_ } | Select-Object -First 12 utterance_id,speaker_id,text | Format-Table -Wrap
-~~~
-
-## 6. 팀 평가 폴더 만들고 역할과 정답 입력하기
-
-**새로 분석하는 영상**은 아래 두 줄로 영상별 저장 위치를 정한다. `$labels`에는 사람이 작성한 평가를, `$out`에는 모델의 분석 결과를 저장한다.
-
-~~~powershell
-$runId = (Get-Item $file).Directory.Name
-$labels = "outputs/$runId/labels"; $out = "outputs/$runId/first12"
-~~~
-
-**이전에 같은 영상으로 `team_labels`와 `outputs/team01`을 사용한 팀**은 대신 아래 한 줄을 쓴다. 다른 영상이면 새 위치를 사용한다.
-
-~~~powershell
-$labels = 'team_labels'; $out = 'outputs/team01'
-~~~
-
-아래 블록은 평가 폴더가 처음이면 `prepare`로 두 파일을 만들고, 둘 다 있으면 작성한 파일을 그대로 연다.
-
-~~~powershell
-$profiles = Join-Path $labels 'speakers.json'
-$gold = Join-Path $labels 'gold.csv'
-if (!(Test-Path $profiles) -and !(Test-Path $gold)) {
-    & $py lab.py prepare --input "$file" --out "$labels"
-}
-if (!(Test-Path $profiles) -or !(Test-Path $gold)) { throw '평가 파일 두 개가 모두 필요합니다. 선택한 평가 폴더를 확인하세요.' }
-code "$profiles" "$gold"
-~~~
-
-- **speakers.json**에서 각 화자 ID 옆에 역할 소개를 1~120자로 적는다. 예를 들어 진행자라면 “상품을 소개하고 출연자에게 사용법을 묻는다.”라고 적는다. 영상의 다른 구간을 참고하고, 평가할 발화의 문장을 그대로 넣지 않는다.
-- **gold.csv**에서 첫 12발화를 보고 각 행의 `speaker,emotion,stage`를 채운다. 두 사람이 먼저 독립적으로 판단하고 차이를 조정한다. 텍스트만으로 판단하기 어려워 내린 결정은 `판단유보`, 아직 평가하지 않은 칸은 빈칸으로 둔다. 두 파일 모두 **Ctrl+S**로 저장한다. [라벨별 판정 기준](HARNESS.md)
-
-## 7. 한국어 BERT 서버 켜기
-
-같은 터미널에 아래 한 줄을 입력하면 **방금 선택한 가상환경**으로 서버 창이 따로 열린다. 이미 8013번 포트에서 실습 서버가 실행 중이면 기존 창을 사용한다.
-
-~~~powershell
-Start-Process -FilePath $py -WorkingDirectory (Get-Location).Path -ArgumentList '-m uvicorn bert_api:app --host 127.0.0.1 --port 8013'
-~~~
-
-첫 실행에서는 한국어 모델을 내려받는다. 새 창에 `Application startup complete`가 보이면 창을 열어 두고 **원래 PowerShell**에서 다음 단계를 진행한다.
-
-## 8. BERT와 GPT로 첫 12발화 분석하기
-
-~~~powershell
-& $py lab.py run --input "$file" --profiles "$profiles" --gold "$gold" --limit 12 --out "$out"
-~~~
-
-`1/12`부터 발화별 진행 상황이 표시되고, 끝나면 결과 폴더 경로가 뜬다. 같은 입력·역할·모델 설정이면 이미 저장한 응답은 재사용한다. 사람 평가표만 고치면 같은 명령으로 일치율을 다시 계산할 수 있다. 역할 소개나 발화 수를 바꿔 비교할 때는 `$out`에 새 결과 폴더명을 지정한다.
-
-~~~powershell
-Invoke-Item (Resolve-Path $out).Path
-~~~
-
-## 9. MCP로 결과 조회하기
-
-~~~powershell
-$result = Join-Path $out 'results.json'
-& $py mcp_demo.py "$result" --id U0006 --speaker SPEAKER_00
-~~~
-
-`find_disagreements`는 **기승전결 판정**이 갈린 발화 ID를 보여준다. `lookup_utterance`는 지정한 U0006의 원문·시각과 두 모델의 답을 나란히 보여준다. `speaker_emotions`는 GPT가 SPEAKER_00으로 분류한 발화의 감정 건수를 센다. 다른 발화나 화자를 보려면 마지막 줄의 ID만 바꾼다. 조회가 끝나면 BERT 서버 창에서 **Ctrl+C**로 종료한다.
-
-## 결과 파일 읽기
-
+### 5. 결과를 해석하는 순서
 
 | 파일 | 열어 보고 답할 질문 |
 |---|---|
@@ -175,5 +87,19 @@ $result = Join-Path $out 'results.json'
 | results.json | 같은 정보를 MCP가 읽는다. 실제 BERT 실행에는 후보별 상대 점수도 있다. |
 | checkpoint.json | 요청 직후 저장한 중간 결과다. 같은 입력·기준·설정·출력 경로로 다시 실행하면 완료된 모델 응답을 재사용한다. |
 
+팀 기록 예시: “U0006(22~28초), BERT ‘승’·GPT ‘전’(모의 응답). ‘그 소리를 무대에 보낼게요’를 사건 방향이 바뀌는 행동으로 보고 우리 조는 ‘전’으로 판정했다.” 실제 팀 기록에는 팀 전사와 실제 결과를 넣는다.
 
-14주차에는 `results.json`, `story_segments.csv`, 그리고 팀이 영상에서 확인한 발화 ID와 시각을 사용한다.
+### 6. MCP로 결과 탐색하기
+
+아래 명령은 MCP 클라이언트와 서버를 같은 PC에서 실행한다. 설치 전이라면 첫 줄부터 실행한다. 별도의 채팅 서비스나 모델 키가 필요 없다.
+
+```powershell
+uv pip install --python .venv -r requirements.txt
+.\.venv\Scripts\python.exe mcp_demo.py outputs/demo/results.json --id U0006 --speaker SPEAKER_00
+```
+
+`find_disagreements`는 선택한 과제에서 모델 답이 다른 ID를, `lookup_utterance`는 그 ID의 시각·텍스트·라벨을, `speaker_emotions`는 특정 모델 기준의 화자별 감정 건수를 반환한다. 예제 재생 결과에서는 첫 조회가 U0006을 반환한다. 입력 경로를 `outputs/team01/results.json`으로 바꾸면 팀 자료를 조회한다. MCP는 파일 조회 도구를 연결하고 추론 비용은 선택한 모델 제공처가 결정한다. [MCP 구조](https://modelcontextprotocol.io/docs/learn/architecture)
+
+### 다음 주에 가져갈 파일
+
+14주차에 콘텐츠 하이라이트를 만들려면 `results.json`, `story_segments.csv`, 그리고 팀이 근거를 확인한 발화 ID와 시각을 가져간다. 원본의 `utterance_id`는 그대로 유지한다.
