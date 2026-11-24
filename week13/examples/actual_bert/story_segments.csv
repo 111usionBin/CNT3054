@@ -1,0 +1,7 @@
+﻿model,stage,first_id,last_id,start_seconds,end_seconds
+bert,결,U0001,U0002,0.0,9.0
+bert,승,U0003,U0004,9.0,18.0
+bert,기,U0005,U0005,18.0,22.0
+bert,판단유보,U0006,U0007,22.0,34.0
+bert,결,U0008,U0008,34.0,38.0
+bert,판단유보,U0009,U0010,38.0,44.0
