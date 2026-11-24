@@ -205,7 +205,13 @@ def single_writer(folder):
         yield
 
 
-def run(args):
+def run_identity(demo, rows, profiles, rubric, models, limit, fixtures):
+    meta = {"mode": "수업용 모의 응답" if demo else "API 실행", "protocol": PROTOCOL, "rubric": rubric["version"],
+            "bert": BERT_ID, "gpt": os.getenv("GPT_MODEL", "openai/gpt-oss-20b")}
+    return meta, digest([meta, rows, profiles, rubric, models, limit, fixtures, os.getenv("BERT_API_URL")])
+
+
+def run(args, before_infer=None):
     demo = args.cmd == "demo"
     if not demo:
         from dotenv import load_dotenv
@@ -233,18 +239,17 @@ def run(args):
     if args.limit < 1:
         raise ValueError("--limit은 1 이상이어야 합니다.")
     models = list(MODELS) if demo or args.backend == "both" else [args.backend]
-    if not demo and "gpt" in models and not os.getenv("GROQ_API_KEY"):
-        raise ValueError(".env에 GROQ_API_KEY를 입력하세요. 키가 없으면 demo 또는 --backend bert를 사용하세요.")
     fixtures = read_json(samples / "replay.json") if demo else {}
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     ck = out / "checkpoint.json"
-    meta = {"mode": "수업용 모의 응답" if demo else "API 실행", "protocol": PROTOCOL, "rubric": rubric["version"],
-            "bert": BERT_ID, "gpt": os.getenv("GPT_MODEL", "openai/gpt-oss-20b")}
-    sig = digest([meta, rows, profiles, rubric, models, args.limit, fixtures, os.getenv("BERT_API_URL")])
+    meta, sig = run_identity(demo, rows, profiles, rubric, models, args.limit, fixtures)
     state = read_json(ck) if ck.exists() else {"signature": sig, "answers": {}}
     if state["signature"] != sig:
         raise ValueError("다른 설정의 실행 폴더입니다. 새 --out 폴더를 지정하세요.")
+    if not demo and "gpt" in models and not os.getenv("GROQ_API_KEY"):
+        if any("gpt/" + row["utterance_id"] not in state["answers"] for row in rows[:args.limit]):
+            raise ValueError("week13/.env에 GROQ_API_KEY를 입력하세요.")
     records = []
     for i, row in enumerate(rows[:args.limit]):
         item = context(rows, i, profiles, rubric)
@@ -252,6 +257,8 @@ def run(args):
         for model in models:
             key = f"{model}/{uid}"
             if key not in state["answers"]:
+                if before_infer:
+                    before_infer(model)
                 ans = fixtures[uid][model] if demo else infer(model, item)
                 state["answers"][key] = validate_result(ans, labels, model, item["target"])
                 write_json(ck, state)
@@ -279,7 +286,14 @@ def main():
             p.add_argument("--profiles", required=True)
             p.add_argument("--backend", choices=["both", *MODELS], default="both")
             p.add_argument("--gold")
+    auto = sub.add_parser("auto", help="12주차 전사 찾기부터 MCP 조회까지 실행")
+    auto.add_argument("--input", type=Path)
+    auto.add_argument("--labels", type=Path, help="이 영상에 사용할 평가 폴더")
+    auto.add_argument("--limit", type=int, default=12)
     args = parser.parse_args()
+    if args.cmd == "auto":
+        from workflow import execute
+        return execute(args)
     if args.cmd != "prepare":
         with single_writer(Path(args.out)):
             return run(args)

@@ -13,15 +13,21 @@ async def main():
     parser.add_argument("--id", default="U0006")
     parser.add_argument("--speaker", default="SPEAKER_00")
     args = parser.parse_args()
+    await query(args.result, args.id, args.speaker)
+
+
+async def query(path, utterance_id, speaker):
+    if not path.is_file():
+        raise SystemExit(f"분석 결과 파일을 찾을 수 없습니다: {path.resolve()}")
     server = Path(__file__).with_name("mcp_server.py")
-    params = StdioServerParameters(command=sys.executable, args=[str(server), str(args.result.resolve())])
+    params = StdioServerParameters(command=sys.executable, args=[str(server), str(path.resolve())])
     async with stdio_client(params) as (reader, writer):
         async with ClientSession(reader, writer) as session:
             await session.initialize()
             print("사용 가능한 도구:", ", ".join(t.name for t in (await session.list_tools()).tools))
             for name, values in [("find_disagreements", {"task": "stage"}),
-                                 ("lookup_utterance", {"utterance_id": args.id}),
-                                 ("speaker_emotions", {"model": "gpt", "speaker": args.speaker})]:
+                                 ("lookup_utterance", {"utterance_id": utterance_id}),
+                                 ("speaker_emotions", {"model": "gpt", "speaker": speaker})]:
                 result = await session.call_tool(name, values)
                 if result.isError:
                     raise RuntimeError(result.content)

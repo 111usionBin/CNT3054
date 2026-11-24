@@ -3,6 +3,32 @@
 
 공연 중계의 “제가 객석 마이크를 올릴게요”는 음향 감독의 말일까? 스피커 고장에 대응해 새로운 방법이 등장한 순간일까? 같은 방송을 한국어 RoBERTa와 GPT-OSS로 읽고, 두 답이 갈린 장면을 시각과 함께 찾아본다. Windows PowerShell + VS Code 기준이다.
 
+### 팀 전사 분석 · 한 번에 실행하기
+
+GitHub Desktop에서 **Pull origin**을 누른 뒤, `(week12)` 가상환경이 활성화된 PowerShell에서 `week13` 폴더를 연다. 이전에 BERT와 GPT 실습을 실행했던 PC에서는 다음 한 줄을 입력한다.
+
+```powershell
+python lab.py auto
+```
+
+기본값은 `week12/outputs`에서 실행시각 폴더 이름이 가장 최신인 `utterances.json`의 첫 12발화다. 터미널에 선택한 경로가 표시된다. 로컬 BERT 서버가 필요하면 직접 시작하고, 분석 결과를 저장한 뒤 MCP로 서사 판정이 갈린 발화, U0006의 원문, GPT가 SPEAKER_00에 귀속한 감정 건수를 조회한다. 해당 ID가 없으면 첫 발화나 첫 화자를 조회한다.
+
+이전 `outputs/team01/checkpoint.json`과 `team_labels`가 현재 전사·모델·설정에 일치하면 기존 응답을 이어 쓴다. 새 전사는 `outputs/teams` 아래에 별도로 저장한다. 처음 분석하는 영상은 화면에 뜨는 화자별 역할 소개를 입력한다. 해당 영상의 평가표가 따로 있으면 아래처럼 지정한다.
+
+```powershell
+python lab.py auto --input "../week12/outputs/20261117T063037_783306Z/utterances.json" --labels team_labels
+```
+
+사람 평가와 비교하려면 표시된 평가 폴더의 `gold.csv`에 팀이 독립적으로 판정한 라벨을 입력한다. 빈칸은 사람 평가에서 제외한다. 평가표만 수정한 뒤 같은 명령을 실행하면 저장된 모델 응답으로 일치율을 다시 계산한다.
+
+처음 설치하는 PC에서는 가상환경을 활성화하고 아래 명령을 먼저 실행한다. 메모장에서 `GROQ_API_KEY=` 뒤에 Groq 키를 입력한다.
+
+```powershell
+uv pip install --python (Get-Command python).Source -r requirements-bert.txt
+if (!(Test-Path .env)) { Copy-Item .env.example .env }
+notepad .env
+```
+
 ### 1. 결과부터 열어 보기
 
 1. GitHub Desktop에서 `CNT3054`의 `main`을 선택하고 **Fetch origin → Pull origin**으로 갱신한다. **Open in Visual Studio Code**로 저장소를 연 뒤 **파일 → 폴더 열기**에서 `lab.py`가 있는 `week13`을 선택한다.
@@ -59,22 +85,9 @@ notepad .env
 | 모델 다운로드가 어렵다 | 같은 명령에 `--backend gpt`를 붙이고 새 출력 폴더를 지정한다. 이 경우 `requirements.txt`만 설치해도 된다. |
 | GPT 키를 받지 못했다 | `--backend bert --out outputs/bert_only`로 BERT를 실제 호출한다. 두 모델의 비교 과정은 `demo`로 연습할 수 있다. |
 
-### 4. 12주차에 수집한 우리 조 전사로 바꾸기
+### 4. 팀 평가 기준
 
-1. 12주차 `week12/outputs/실행시각/utterances.json`을 이번 폴더로 복사해 `team.json`으로 이름을 바꾼다. 동일한 열을 가진 `utterances.csv`도 지원한다. 영상이나 음성을 다시 올릴 필요가 없다.
-2. 후보 화자 목록과 사람 평가표를 만든다.
-
-```powershell
-.\.venv\Scripts\python.exe lab.py prepare --input team.json --out team_labels
-```
-
-3. `team_labels/speakers.json`을 VS Code로 연다. 원영상의 별도 구간을 보고 번호별 역할을 1~2개의 짧은 문장으로 쓴다. 예를 들어 “악기와 마이크를 담당한다. 음량을 조정한다.”처럼 표현한다. 평가할 발화의 인용이나 ID를 소개에 넣으면 답이 새어 나간다. 영상이 바뀌면 같은 번호여도 인물이 바뀔 수 있다.
-4. 모델 결과를 열기 전에 두 명이 앞 12발화를 각각 읽고 불일치를 조정해 `gold.csv`에 **speaker, emotion, stage**를 적는다. 이 실습의 화자 정답은 **텍스트로 귀속할 수 있는 후보**다. 영상에서 신원이 확인돼도 “네.”처럼 텍스트로 구별하기 어려우면 `판단유보`로 기록한다. 소리로 확인한 실제 인물 적중률을 따로 연구할 때는 그 기준으로 별도 표를 만든다. 기준표는 [HARNESS.md](HARNESS.md)에 있다. 미평가 칸은 빈칸으로 둔다.
-5. 아래 명령을 실행한다. `--limit`은 시작 시각 기준 앞에서부터 읽을 발화 수다. 전체를 읽으려면 실제 행 수 이상을 지정한다. 다른 클립이나 조건은 다른 `--out`에 저장한다.
-
-```powershell
-.\.venv\Scripts\python.exe lab.py run --input team.json --profiles team_labels/speakers.json --gold team_labels/gold.csv --limit 12 --out outputs/team01
-```
+모델 결과를 보기 전에 두 명이 앞 12발화를 각각 읽고 불일치를 조정해 `gold.csv`에 **speaker, emotion, stage**를 적는다. 영상에서 신원이 확인돼도 “네.”처럼 텍스트로 구별하기 어려우면 `판단유보`로 기록한다. 화자 소개는 평가할 발화를 직접 인용하지 않고 별도 구간을 참고해 작성한다. [공통 평가 기준](HARNESS.md)
 
 ### 5. 결과를 해석하는 순서
 
